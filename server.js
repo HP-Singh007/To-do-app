@@ -6,5 +6,5 @@ connectDB();
 
 //server listening 
 app.listen(process.env.PORT_NO,()=>{
-    console.log(`Database started at http://localhost:${process.env.PORT_NO}`);
+    console.log(`Database started at http://localhost:${process.env.PORT_NO} in ${process.env.NODE_ENV} Mode`);
 })

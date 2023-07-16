@@ -54,7 +54,9 @@ export const getMyProfile = (req, res) => {
 export const logout = async (req, res ,next) => {
     try {
         res.status(200).cookie("token", " ", {
-            maxAge: 0
+            maxAge: 0,
+            sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+            secure: process.env.NODE_ENV === "Development" ? false : true,
         }).json({
             success: true,
             message: "logout"
