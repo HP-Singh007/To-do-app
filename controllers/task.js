@@ -35,6 +35,28 @@ export const getTasks = async (req, res, next) => {
     }
 }
 
+export const updateTaskDetails = async(req,res,next)=>{
+    try {
+        const task = await Task.findById(req.params.id);
+
+        if (!task) return next(new ErrorHandler("No Task Found", 404));
+
+        const {title,description} = req.body;
+
+        task.title=title;
+        task.description=description;
+        await task.save();
+        
+        res.json({
+            success:true,
+            message:"Task Updated"
+        })
+        
+    } catch (error) {
+        next(error);
+    }
+}
+
 //Update Tasks
 export const updateTask = async (req, res, next) => {
     try {
